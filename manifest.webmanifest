@@ -1,0 +1,17 @@
+{
+  "name": "MonTaxiDirect — Votre taxi. En direct.",
+  "short_name": "MonTaxiDirect",
+  "lang": "fr-CA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8fb",
+  "theme_color": "#142138",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

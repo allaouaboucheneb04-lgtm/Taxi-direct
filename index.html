@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#142138" />
+  <meta name="description" content="MonTaxiDirect : un lien et un QR code personnel par chauffeur, avec réservation et gestion de clientèle privée." />
+  <title>MonTaxiDirect — Votre taxi, en direct</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" aria-live="polite"></div>
+  <div id="toast-region" role="status" aria-live="polite"></div>
+  <div id="print-preview" aria-hidden="true"></div>
+  <script src="vendor/qr-code.js"></script>
+  <script src="firebase-config.js"></script>
+  <script defer src="app.js"></script>
+</body>
+</html>
