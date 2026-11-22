@@ -97,3 +97,19 @@ Le générateur de QR local est dérivé de « QRCode for JavaScript » © Kazuh
 ## Mise à jour depuis Taxi Live
 
 Les données de la démonstration locale sont reprises automatiquement si le stockage `taxi-live-demo-v1` existait déjà, afin de ne pas perdre les essais précédents. Les comptes Firebase et identifiants de chauffeurs ne sont pas renommés : leurs URL de réservation restent basées sur `?taxi=<UID>`. Lors de la publication sur un nouveau domaine, il faut générer et redistribuer les QR codes qui contiennent l’ancienne URL.
+
+## Connexion Firebase configurée — 22 novembre 2026
+
+L'application Web est configurée pour le projet **taxi-direct-d6d28** dans `firebase-config.js`, et le projet Firebase par défaut est enregistré dans `.firebaserc`.
+
+La configuration côté navigateur est publique ; elle **n'accorde pas** à elle seule des droits d'administration, ni l'accès à la base. Seules les règles Firestore publiées dans le projet Firebase protègent les données. Le fichier `firestore.rules` sur GitHub **n'est pas automatiquement appliqué** à Firebase.
+
+### Actions à effectuer dans la console Firebase
+1. Ouvrir https://console.firebase.google.com/project/taxi-direct-d6d28/authentication/providers et activer **Adresse e-mail / Mot de passe**.
+2. Ouvrir https://console.firebase.google.com/project/taxi-direct-d6d28/firestore et créer la base Cloud Firestore (mode production, emplacement canadien si pertinent).
+3. Publier les règles du fichier `firestore.rules` dans **Firestore Database → Règles**, ou avec `firebase deploy --only firestore:rules`. Sans elles, ne pas commencer à collecter de vrais clients.
+4. Créer un compte chauffeur avec l'application puis, pour désigner l'administrateur, créer manuellement `admins/<UID>` dans la console Firestore après avoir récupéré son UID dans Authentication.
+5. Déployer le site avec `firebase deploy --only hosting` pour obtenir une URL stable. Dans **Authentication → Settings → Authorized domains**, vérifier que le domaine du site est autorisé.
+6. Avant usage commercial, tester qu'un chauffeur ne voit pas les réservations d'un autre, et activer App Check et une protection contre les abus de réservations anonymes.
+
+Le paramètre `measurementId` est inclus, mais Google Analytics n'est **pas initialisé automatiquement** ; ce suivi nécessite un choix de consentement adapté aux données personnelles collectées.
